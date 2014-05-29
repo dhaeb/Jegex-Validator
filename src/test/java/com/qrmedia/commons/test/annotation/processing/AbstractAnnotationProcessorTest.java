@@ -1,7 +1,8 @@
 /*
- * @(#)AbstractAnnotationProcessorTest.java     5 Jun 2009
+ * @(#)AbstractAnnotationProcessorTest.java      29 May 2009
  *
  * Copyright Â© 2010 Andrew Phillips.
+ * 			    2014 Dan Häberlein
  *
  * ====================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,9 +48,13 @@ import org.springframework.util.ClassUtils;
 /**
  * A base test class for {@link Processor annotation processor} testing that
  * attempts to compile source test cases that can be found on the classpath.
+ * <p>dhaeb: I added the method {@link #assertCompilationSuccessfulWithoutWarnings(List)} to check if there were no warning at all in a compilation.
+ * Furthermore, I did some small refactoring.</p>
  * 
  * @author aphillips
- * @since 5 Jun 2009
+ * @author dhaeb
+ * 
+ * @since 29 May 2014
  * 
  */
 public abstract class AbstractAnnotationProcessorTest {
@@ -162,8 +167,7 @@ public abstract class AbstractAnnotationProcessorTest {
      * Asserts that the compilation produced no errors, i.e. no diagnostics of
      * type {@link Kind#ERROR}.
      * 
-     * @param diagnostics
-     *            the result of the compilation
+     * @param diagnostics the result of the compilation
      * @see #assertCompilationReturned(Kind, long, List)
      * @see #assertCompilationReturned(Kind[], long[], List)
      */
@@ -174,6 +178,14 @@ public abstract class AbstractAnnotationProcessorTest {
 
     }
     
+    /**
+     * Asserts that the compilation produced no errors AND warning, i.e. no diagnostics of
+     * type {@link Kind#ERROR} or {@link Kind#WARNING}.
+     * 
+     * @param diagnostics the result of the compilation
+     * @see #assertCompilationReturned(Kind, long, List)
+     * @see #assertCompilationReturned(Kind[], long[], List)
+     */
     protected static void assertCompilationSuccessfulWithoutWarnings(List<Diagnostic<? extends JavaFileObject>> diagnostics) {
     	assertCompilationSuccessful(diagnostics);
     	assertNotContains(diagnostics, Kind.WARNING, "Expected no Warnings");
