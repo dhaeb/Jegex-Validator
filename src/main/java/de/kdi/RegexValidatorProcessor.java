@@ -28,16 +28,17 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 
 	@Override
 	public boolean process(Set<? extends TypeElement> annotatedElement, RoundEnvironment env) {
-		Set<? extends Element> annotatedElements = env.getElementsAnnotatedWith(ValidateRegex.class);
-		for (Element e : annotatedElements) {
-			checkIfPatternCompilble((VariableElement) e);
+		if (!env.processingOver()) {
+			Set<? extends Element> annotatedElements = env.getElementsAnnotatedWith(ValidateRegex.class);
+			for (Element e : annotatedElements) {
+				checkIfPatternCompilble((VariableElement) e);
+			}
 		}
-
 		return true;
 	}
 
 	private void checkIfPatternCompilble(VariableElement e) {
-//		System.err.println(e.getSimpleName() + " = " + e.getConstantValue());
+		// System.err.println(e.getSimpleName() + " = " + e.getConstantValue());
 		checkFieldIsFinal(e, e.getAnnotation(ValidateRegex.class));
 	}
 
@@ -52,7 +53,7 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 	private boolean fieldIsFinal(VariableElement e) {
 		return e.getModifiers().contains(Modifier.FINAL);
 	}
-	
+
 	private void checkIsString(VariableElement e, ValidateRegex annotation) {
 		TypeMirror variableType = e.asType();
 		if (isSameType(getTypeElementFromClass(String.class).asType(), variableType)) {
@@ -61,8 +62,7 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 
 		} else {
 			getMessager().printMessage(Kind.WARNING,
-									   String.format(CAN_T_CHECK_REGEX + "Variable %s not a String! Instead found type %s", 
-									   e.getSimpleName(), variableType), e);
+					String.format(CAN_T_CHECK_REGEX + "Variable %s not a String! Instead found type %s", e.getSimpleName(), variableType), e);
 		}
 	}
 
@@ -79,13 +79,16 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 
 	private String quoteIfRequested(ValidateRegex annotation, String pattern) {
 		if (annotation.patternQuote()) {
-			pattern = Pattern.quote(pattern); 
+			pattern = Pattern.quote(pattern);
 		}
 		return pattern;
 	}
 
 	private void verifyPattern(ValidateRegex annotation, String pattern) throws PatternSyntaxException, NotMatchableException {
-		Pattern compiledPattern = Pattern.compile(pattern); // throws PatternSyntaxException when pattern not well-formed
+		Pattern compiledPattern = Pattern.compile(pattern); // throws
+															// PatternSyntaxException
+															// when pattern not
+															// well-formed
 		for (String souldBeMatchable : annotation.matches()) {
 			boolean matchesUserdefinedInput = compiledPattern.matcher(souldBeMatchable).matches();
 			if (!matchesUserdefinedInput) {
