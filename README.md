@@ -22,8 +22,8 @@ Addionally, you don't need to distribute it with your code because this library 
 This library is build with maven. This project will be uploaded to maven central soon. Until then, please build the project with maven on your own. You just need to checkout the git project, install it using maven, and reference it in your own classpath. At best, you use also maven and include a new dependency into your pom:
 ```xml
 <dependency>
-    <groupId>de.kdi</groupId>
-    <artifactId>JavaRegexValidator</artifactId>
+    <groupId>com.github.dhaeb</groupId>
+    <artifactId>jegex-validator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
@@ -36,14 +36,14 @@ Be aware of the settings for annotation processors. For the oracle / sun java co
 #### Simple structure analysis
 
 Now your are ready to use it. Well lets start easy. The library was designed to annotate *final and initialized string fields* to ensure their usability as regular expressions at compile time.
-Therefore, the annotation which you need to use has the full qualfied class name: <code>de.kdi.validate.ValidateRegex</code>. 
+Therefore, the annotation which you need to use has the full qualfied class name: <code>com.github.dhaeb.validate.ValidateRegex</code>. 
 
 As an example, the usage can look like that:
 
 ```java
 //...package declaration
 import java.util.regex.Pattern;
-import de.kdi.validate.ValidateRegex;
+import com.github.dhaeb.validate.ValidateRegex;
 
 public class SimpleWorkingExample {
 
@@ -83,7 +83,7 @@ Take a look on the following example code:
 // ...package declaration
 import java.util.regex.Pattern;
 
-import de.kdi.validate.ValidateRegex;
+import com.github.dhaeb.validate.ValidateRegex;
 
 public class ExtendedWorkingExample {
 
