@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi.validate;
+package com.github.dhaeb.validate;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -21,7 +21,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.regex.Pattern;
 
-import de.kdi.RegexValidatorProcessor;
+import com.github.dhaeb.RegexValidatorProcessor;
 
 /**
  * 

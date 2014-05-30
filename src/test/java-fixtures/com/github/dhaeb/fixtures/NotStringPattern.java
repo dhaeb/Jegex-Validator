@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi.exceptions;
+package com.github.dhaeb.fixtures;
 
-public class NotMatchableException extends Exception {
+import com.github.dhaeb.validate.ValidateRegex;
 
-	private static final long serialVersionUID = -8600155414191479365L;
+public class NotStringPattern {
 
-	public NotMatchableException(String format) {
-		super(format);
-	}
-
+	@ValidateRegex
+	private static final Integer NOT_A_STRING = 23;
+	
 }

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi.fixtures;
+package com.github.dhaeb.fixtures;
 
-import de.kdi.validate.ValidateRegex;
+import com.github.dhaeb.validate.ValidateRegex;
 
-public class NotCompilablePattern {
-
+public class NotInitializedPattern {
+	
 	@ValidateRegex
-	private static final String NOT_COMPILABLE_PATTERN = "(abc";
+	private static String NOT_INITIALIZED_PATTERN;
 	
 }

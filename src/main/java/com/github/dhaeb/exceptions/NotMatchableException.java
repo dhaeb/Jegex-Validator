@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi.fixtures;
+package com.github.dhaeb.exceptions;
 
-import de.kdi.validate.ValidateRegex;
+public class NotMatchableException extends Exception {
 
-public class FixturesDontHold {
+	private static final long serialVersionUID = -8600155414191479365L;
 
-	@ValidateRegex(matches= {"123", "abc"}) // user defines example matches  
-	private final String regex = "\\d*";
+	public NotMatchableException(String format) {
+		super(format);
+	}
+
 }

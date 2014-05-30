@@ -13,24 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi.fixtures;
+package com.github.dhaeb.fixtures;
 
-import java.util.regex.Pattern;
+import com.github.dhaeb.validate.ValidateRegex;
 
-import de.kdi.validate.ValidateRegex;
-
-public class WorkingUsage {
+public class NotVerifyANonFinalField {
 
 	@ValidateRegex
-	private static final String CONSTANT = "[^123]*"; // works as expected
-	
-	@ValidateRegex
-	private final String field = "pattern"; // works only with a final field!
-	
-	public boolean matches(String input){
-		@ValidateRegex final String localVariable = "compilable"; // this is not processed using javac 1.7.55!!!
-		Pattern compile = Pattern.compile(localVariable);
-		return compile.matcher(input).matches();
-	}
-	
+	private static String NOT_FINAL = ".*";
 }

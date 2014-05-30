@@ -13,13 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi.fixtures;
+package com.github.dhaeb.fixtures;
 
-import de.kdi.validate.ValidateRegex;
+import java.util.regex.Pattern;
 
-public class NotStringPattern {
+import com.github.dhaeb.validate.ValidateRegex;
+
+public class WorkingUsage {
 
 	@ValidateRegex
-	private static final Integer NOT_A_STRING = 23;
+	private static final String CONSTANT = "[^123]*"; // works as expected
+	
+	@ValidateRegex
+	private final String field = "pattern"; // works only with a final field!
+	
+	public boolean matches(String input){
+		@ValidateRegex final String localVariable = "compilable"; // this is not processed using javac 1.7.55!!!
+		Pattern compile = Pattern.compile(localVariable);
+		return compile.matcher(input).matches();
+	}
 	
 }

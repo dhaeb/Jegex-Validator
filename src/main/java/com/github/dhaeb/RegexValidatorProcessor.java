@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi;
+package com.github.dhaeb;
 
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -32,10 +32,10 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic.Kind;
 
-import de.kdi.exceptions.NotMatchableException;
-import de.kdi.validate.ValidateRegex;
+import com.github.dhaeb.exceptions.NotMatchableException;
+import com.github.dhaeb.validate.ValidateRegex;
 
-@SupportedAnnotationTypes("de.kdi.validate.ValidateRegex")
+@SupportedAnnotationTypes("com.github.dhaeb.validate.ValidateRegex")
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 public class RegexValidatorProcessor extends AbstractProcessor {
 
@@ -43,7 +43,9 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 
 	@Override
 	public boolean process(Set<? extends TypeElement> annotatedElement, RoundEnvironment env) {
-		if (!env.processingOver()) {
+		if (env.processingOver()) {
+			getMessager().printMessage(Kind.NOTE, String.format("Used Jegex-Validator Version %s", "0.0.1"));
+		} else {
 			Set<? extends Element> annotatedElements = env.getElementsAnnotatedWith(ValidateRegex.class);
 			for (Element e : annotatedElements) {
 				checkIfPatternCompilble((VariableElement) e);

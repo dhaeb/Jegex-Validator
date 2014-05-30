@@ -1,8 +1,8 @@
-package de.kdi.fixtures;
+package com.github.dhaeb.fixtures;
 
 import java.util.regex.Pattern;
 
-import de.kdi.validate.ValidateRegex;
+import com.github.dhaeb.validate.ValidateRegex;
 
 public class ExtendedWorkingExample {
 

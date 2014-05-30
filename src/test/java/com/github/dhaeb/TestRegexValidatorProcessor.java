@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package de.kdi;
+package com.github.dhaeb;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,17 +23,17 @@ import javax.tools.Diagnostic.Kind;
 
 import org.junit.Test;
 
+import com.github.dhaeb.RegexValidatorProcessor;
+import com.github.dhaeb.fixtures.ExtendedWorkingExample;
+import com.github.dhaeb.fixtures.FixturesDontHold;
+import com.github.dhaeb.fixtures.NotCompilablePattern;
+import com.github.dhaeb.fixtures.NotInitializedPattern;
+import com.github.dhaeb.fixtures.NotStringPattern;
+import com.github.dhaeb.fixtures.NotVerifyANonFinalField;
+import com.github.dhaeb.fixtures.SimpleWorkingExample;
+import com.github.dhaeb.fixtures.UsingPatternQuoteFlag;
+import com.github.dhaeb.fixtures.WorkingUsage;
 import com.qrmedia.commons.test.annotation.processing.AbstractAnnotationProcessorTest;
-
-import de.kdi.fixtures.ExtendedWorkingExample;
-import de.kdi.fixtures.FixturesDontHold;
-import de.kdi.fixtures.NotCompilablePattern;
-import de.kdi.fixtures.NotInitializedPattern;
-import de.kdi.fixtures.NotStringPattern;
-import de.kdi.fixtures.NotVerifyANonFinalField;
-import de.kdi.fixtures.SimpleWorkingExample;
-import de.kdi.fixtures.UsingPatternQuoteFlag;
-import de.kdi.fixtures.WorkingUsage;
 
 public class TestRegexValidatorProcessor extends AbstractAnnotationProcessorTest {
 
