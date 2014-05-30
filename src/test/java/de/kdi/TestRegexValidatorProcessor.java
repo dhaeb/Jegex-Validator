@@ -25,11 +25,13 @@ import org.junit.Test;
 
 import com.qrmedia.commons.test.annotation.processing.AbstractAnnotationProcessorTest;
 
+import de.kdi.fixtures.ExtendedWorkingExample;
 import de.kdi.fixtures.FixturesDontHold;
 import de.kdi.fixtures.NotCompilablePattern;
 import de.kdi.fixtures.NotInitializedPattern;
 import de.kdi.fixtures.NotStringPattern;
 import de.kdi.fixtures.NotVerifyANonFinalField;
+import de.kdi.fixtures.SimpleWorkingExample;
 import de.kdi.fixtures.UsingPatternQuoteFlag;
 import de.kdi.fixtures.WorkingUsage;
 
@@ -68,8 +70,8 @@ public class TestRegexValidatorProcessor extends AbstractAnnotationProcessorTest
 	}
 	
 	@Test
-	public void testWorksWithLocalVariable() throws Exception {
-		assertCompilationSuccessfulWithoutWarnings(compileTestCase(WorkingUsage.class));
+	public void testWorksNormalUsage() throws Exception {
+		assertCompilationSuccessfulWithoutWarnings(compileTestCase(WorkingUsage.class, SimpleWorkingExample.class, ExtendedWorkingExample.class));
 	}
 	
 	@Test
