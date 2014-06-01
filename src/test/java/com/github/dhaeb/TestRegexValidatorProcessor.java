@@ -32,6 +32,7 @@ import com.github.dhaeb.fixtures.NotStringPattern;
 import com.github.dhaeb.fixtures.NotVerifyANonFinalField;
 import com.github.dhaeb.fixtures.SimpleWorkingExample;
 import com.github.dhaeb.fixtures.UsingPatternQuoteFlag;
+import com.github.dhaeb.fixtures.WithNullInitializedPattern;
 import com.github.dhaeb.fixtures.WorkingUsage;
 import com.qrmedia.commons.test.annotation.processing.AbstractAnnotationProcessorTest;
 
@@ -77,6 +78,11 @@ public class TestRegexValidatorProcessor extends AbstractAnnotationProcessorTest
 	@Test
 	public void testDoesNotCompileWhenUserFixturesNotMatch() throws Exception {
 		assertCompilationReturned(Kind.ERROR, LINE_NUMBER, compileTestCase(FixturesDontHold.class));
+	}
+	
+	@Test
+	public void testDoesNotCompilePatternIsNull() throws Exception {
+		assertCompilationReturned(Kind.ERROR, LINE_NUMBER, compileTestCase(WithNullInitializedPattern.class));
 	}
 
 }

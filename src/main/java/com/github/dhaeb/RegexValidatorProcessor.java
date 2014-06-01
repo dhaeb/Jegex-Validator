@@ -75,11 +75,19 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 		TypeMirror variableType = e.asType();
 		if (isSameType(getTypeElementFromClass(String.class).asType(), variableType)) {
 			String pattern = (String) e.getConstantValue();
-			processPattern(e, annotation, pattern);
-
+			checkIsNullOrNoFunctionCall(e, annotation, pattern);
 		} else {
 			getMessager().printMessage(Kind.WARNING,
 					String.format(CAN_T_CHECK_REGEX + "Variable %s not a String! Instead found type %s", e.getSimpleName(), variableType), e);
+		}
+	}
+
+	private void checkIsNullOrNoFunctionCall(VariableElement e, ValidateRegex annotation, String pattern) {
+		if (pattern == null) {
+			getMessager().printMessage(Kind.ERROR,
+					String.format(CAN_T_CHECK_REGEX + "Variable %s is null! (Or is it maybe not a constant string value?)", e.getSimpleName()), e);
+		} else {
+			processPattern(e, annotation, pattern);
 		}
 	}
 
@@ -102,10 +110,7 @@ public class RegexValidatorProcessor extends AbstractProcessor {
 	}
 
 	private void verifyPattern(ValidateRegex annotation, String pattern) throws PatternSyntaxException, NotMatchableException {
-		Pattern compiledPattern = Pattern.compile(pattern); // throws
-															// PatternSyntaxException
-															// when pattern not
-															// well-formed
+		Pattern compiledPattern = Pattern.compile(pattern); // throws PatternSyntaxException when pattern not well-formed
 		for (String souldBeMatchable : annotation.matches()) {
 			boolean matchesUserdefinedInput = compiledPattern.matcher(souldBeMatchable).matches();
 			if (!matchesUserdefinedInput) {
