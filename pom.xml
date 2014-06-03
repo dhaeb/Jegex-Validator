@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.dhaeb</groupId>
 	<artifactId>jegex-validator</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>Jegex-Validator</name>
 	<description>This project provides a simple annotation processor to show, that the java annotation processing mechanism is able to validate existing annotated code. In particular, this processor will validate annotated Strings which will  be used as regular expressions.
 A regex is valid if it is compilable and if it matches user defined fixtures on the annotation level.</description>
