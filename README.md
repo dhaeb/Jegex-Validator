@@ -19,14 +19,22 @@ Addionally, you don't need to distribute it with your code because this library 
 
 ### Include the java library to your compile classpath
 
-This library is build with maven. This project will be uploaded to maven central soon. Until then, please build the project with maven on your own. You just need to checkout the git project, install it using maven, and reference it in your own classpath. At best, you use also maven and include a new dependency into your pom:
+This library is build with maven. This project has been uploaded to maven central.
+If you are not a maven user, the installing process is also easy:
+- get the binaries (build it using maven or retrieve it from the [maven central](https://oss.sonatype.org/#nexus-search;quick~jegex))
+- reference it in your own classpath
+
+At best, use maven and include a new dependency into your pom:
 ```xml
 <dependency>
     <groupId>com.github.dhaeb</groupId>
     <artifactId>jegex-validator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 </dependency>
 ```
+
+If you want IDE support, checkout how annotation processors are used in your IDE.
+In Eclipse, you can use [this guide](http://www.eclipse.org/jdt/apt/introToAPT.php).
 
 ### Use it!
 
