@@ -146,4 +146,4 @@ You may obtain a copy of the License at
 </code>
 
 I added and modified the class [AbstractAnnotationProcessorTest](http://aphillips.googlecode.com/svn/commons-test-support/trunk/src/main/java/com/qrmedia/commons/test/annotation/processing/AbstractAnnotationProcessorTest.java) by Andew Phillips.
-In [this article](http://blog.xebia.com/2009/07/21/testing-annotation-processors/) he described how to create a easy testing environment for annotation processores, which I adopted and used in this project.
+He described in this [article](http://blog.xebia.com/2009/07/21/testing-annotation-processors/) how to create an easy testing environment for annotation processores which I adopted and used in this project.
